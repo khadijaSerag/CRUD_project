@@ -24,6 +24,8 @@ else {
     displayProducts();
 }
 
+// validate more...
+
 // if (productNameInput.value == "" || productPriceInput.value == "" || CategoryInput.value == "" || productDescInput.value == "") {
 //     addBtn.disabled = true;
 // }
@@ -37,6 +39,7 @@ else {
 // else {
 //     window.alert("please enter your corrrect data");
 // }
+
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // دى فانكشن البوتون اللى اسمه اد عشان يضيف العناصر اللى دخلها فى تيبول لما اتك عليه

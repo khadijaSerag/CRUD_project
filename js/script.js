@@ -11,14 +11,13 @@ var currentIndex;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-// var productsCounter = []; // دى مش صح لازم تتقسم ل اف وايلس 
+// var productsCounter = []; // This is not true. It must be divided into if - else
 var productsCounter;
-// ده عشان لو بفتح الموقع اول مرة من متصفح جديد
+// if you open the site for the first time from a new browser
 if (localStorage.getItem("products") == null) {
     productsCounter = [];
 }
-// ده عشان لو عندى داتا اصلا كنت مخزناها قبل كده وجيت قفلت وفتحت الموقع او عملت ريفريش
-// للموقع الداتا اللى متخزنة من قبل كده متضيعش وتتعرضلى فى التيبول اول لما افتح الموقع
+// if I had data originally, I would have stored it before, and I would have closed and opened the site or made a refresh for the data site that was stored before.
 else {
     productsCounter = JSON.parse(localStorage.getItem("products"));
     displayProducts();
@@ -42,7 +41,7 @@ else {
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
-// دى فانكشن البوتون اللى اسمه اد عشان يضيف العناصر اللى دخلها فى تيبول لما اتك عليه
+// to add the elements that he entered into the table when he relied on it 
 function addProduct() {
     var product =
     {
@@ -54,21 +53,20 @@ function addProduct() {
     
     if (addBtn.innerHTML == "add") {
         productsCounter.push(product);
-        localStorage.setItem("products", JSON.stringify(productsCounter)); // دى عشان يخزن الداتا بتاعتى دى فى لوكل استرودج داتا بيز صغيرة وبتاخد قيميتن استرنج عشان كدا بحاول الاراى بتاعى لاسترنج عن طريق جزوناف استرنج فاى
+        localStorage.setItem("products", JSON.stringify(productsCounter)); // to store my data in a localstorage Database and take two string values, so convert my array to string data.
     }
     else {
         edit();
         addBtn.innerHTML = "add";
     }
-    displayProducts(); // دى عشان اكول الفانكشن بتاعت ديسبلاى لما اتك على بوتن الاد يعرضلى الداتا فى الجدول
+    displayProducts(); // When I click on the button, the add shows me the data in the table
     clear();
 
     console.log(productsCounter);
 }
-
-// هنا فى مشكلة هتقابلنى انه كل مرة بدخل فيها عناصر بياخد اخر عنصر بس 
-// واللى قبله بيتمسح فعشان ياخد كل العناصر اللى هدخلها بعمل اراى وابوش فيها العناصر دى 
-// فهيبقى اراى اوف اوبجيكت 
+// Here there is a problem, you will meet me that every time I enter elements, it only takes the last element
+// And the one before it is deleted, so that it takes all the elements that I will enter by making a review and push on these elements
+// So I see of the object
 
 
 
@@ -129,7 +127,7 @@ CategoryInput.addEventListener("keyup", validateCategory);
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
-// دى فانكشن عشان كل مرة تفضيلى الانبوت بعد مايملى الانبوت كلها وابوش القيم فى اراى 
+// every time clear the input after the entire fills up and push the values in my array
 function clear() {
     productNameInput.value = "";
     productPriceInput.value = "";
@@ -138,7 +136,7 @@ function clear() {
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
-//  دى فانكشن عشان تاخد الداتا اللى هيدخلها اليوزر وتظهرها فى الجدول تحت 
+//  to take the data that the user will enter and show it in the table below
 function displayProducts() {
     var cartona = ``;
 
@@ -161,7 +159,7 @@ function displayProducts() {
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
-// ده فانكشن السيرش عشان لما اجى اسيرش على عنصر وانا بخليه يسيرش بالنيم والكاتوجرى 
+// when I come to search for an item, I make it search with name and catogri
 function searchProduct(searchTerm) {
     var cartona = ``;
     for (var i = 0; i < productsCounter.length; i++) {
@@ -185,7 +183,7 @@ function searchProduct(searchTerm) {
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
-// دى فانكشن لزرار الديليت 
+// Function Button Delete
 function deleteProduct(indexitem) {
     productsCounter.splice(indexitem, 1);
     localStorage.setItem("products", JSON.stringify(productsCounter));
@@ -197,7 +195,7 @@ function deleteProduct(indexitem) {
 
 
 function update(indexitem) {
-    // دول عشان تحول الداتا من التيبول لفوق فى النبوت على حسب النديكس بتاع الداتا اللى هتك عليه
+    // to transfer the data from the table to the top of the input, according to the index of the data on which it was clicked
     productNameInput.value = productsCounter[indexitem].name,
         productPriceInput.value = productsCounter[indexitem].price,
         CategoryInput.value = productsCounter[indexitem].category,
@@ -217,7 +215,7 @@ function edit() {
         category: CategoryInput.value,
         desc: productDescInput.value,
     }
-    productsCounter[currentIndex] = product; //عشان تجيب القيم اللى انا دخلتها فى الابدديت وتخزن الانديكس بتاع عشان تعدل فيه هو وتخزنها فيه القيمة الجديدة 
+    productsCounter[currentIndex] = product; //to bring the values that I entered in the update and store its index in order to modify it and store it in the new value
     localStorage.setItem("products", JSON.stringify(productsCounter));
 
     // productsCounter[index].name =  productNameInput.value,
